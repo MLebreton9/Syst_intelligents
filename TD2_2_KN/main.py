@@ -9,13 +9,12 @@ import numpy as np
 from perceptron import *
 import matplotlib.pyplot as plt
 
-if __name__ == "__main__":
-    error_surface=np.zeros((20,20))
-    inputs = [[0, 0], [0, 1], [1, 0], [1, 1]]
-    sortieAttendues = [0, 0, 0, 1]
-    p = Perceptron(2, 20, 0.001)
-    p.train(inputs, sortieAttendues)
-    with open('poids.csv', mode='w') as f:
+if __name__ == "__main__":          #ne s'execute que si ce fichier est le fichier principal
+    inputs = [[0, 0], [0, 1], [1, 0], [1, 1]]       #entrées de la porte AND
+    sortieAttendues = [0, 0, 0, 1]                  #sorties attendues
+    p = Perceptron(2, 10, 0.01)                     #création du perceptron
+    p.train(inputs, sortieAttendues)                #entrainement du perceptron
+    with open('poids.csv', mode='w') as f:          #enregistrement des poids
         f_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         f_writer.writerow([p.poids[0]])
         f_writer.writerow([p.poids[1]])
