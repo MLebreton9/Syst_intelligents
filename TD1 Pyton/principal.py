@@ -4,18 +4,18 @@ from Army import *
 import csv
 import random
 
-if __name__ == '__main__':
+if __name__ == '__main__':          #S'execute si ce fichier est le fichier principal
     characters_list = []
     army_list = []
-    with open('characters.csv', newline='') as csvfile:
+    with open('characters.csv', newline='') as csvfile:     #Lecture du fichier csv
         next(csvfile)
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in spamreader:
-            characters_list.append(Character(row[0], row[1], row[2], row[3], row[4]))
-            army_list.append(Army(Character(row[0], row[1], row[2], row[3], row[4]),random.randrange(20,100)))
+            characters_list.append(Character(row[0], row[1], row[2], row[3], row[4]))                             #Création des character
+            army_list.append(Army(Character(row[0], row[1], row[2], row[3], row[4]),random.randrange(20,100)))    #Création des armées
 
     morale_total = 0
-    for army in army_list:
+    for army in army_list:                                                                                        #Caclul du moral total de l'armée
         morale_total = morale_total + army.get_total_moral()
 
     print(morale_total)
